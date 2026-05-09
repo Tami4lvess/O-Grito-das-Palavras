@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>O Grito das Palavras</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="icon" type="image/x-icon" href="assets/covers/Icon.png">
+  <meta property="og:image" content="assets/covers/juiz.jpg"/>
+</head>
+<body>
+
+<!-- FUNDO GLOBAL -->
+<div class="bg-munch" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg/800px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg');"></div>
+<div class="bg-overlay"></div>
+
+
+<!-- ═══ PÁGINA PRINCIPAL ═══ -->
+<div id="pg-main" class="pg active">
+  <div class="content-layer">
+    <header>
+      <div class="logo-area">
+        <span class="logo-title">O Grito das Palavras</span>
+        <span class="logo-sub">Uma Antologia Viva</span>
+      </div>
+      <div id="auth-area">
+        <button id="library-nav-btn" onclick="ir('biblioteca')">Minha Biblioteca</button>
+        <button id="google-login-btn" onclick="fazerLogin()">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57C21.36 18.1 22.56 15.4 22.56 12.25z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Entrar com Google
+        </button>
+        <div id="user-info">
+          <img id="user-avatar" src="" alt="avatar"/>
+          <span id="user-name"></span>
+          <button id="logout-btn" onclick="fazerLogout()">Sair</button>
+        </div>
+      </div>
+    </header>
+    <div class="hero">
+      <p class="hero-eyebrow">Uma antologia viva</p>
+      <h1 class="hero-title">Poemas que <em>gritam</em><br>através do tempo</h1>
+      <p class="hero-desc">Mestres da literatura universal reunidos em um único canto — seus versos tecidos em harmonia, como uma sinfonia de séculos.</p>
+    </div>
+    <div class="corner-ornament">Dev Tamires</div>
+  </div>
+  <div class="generate-btn-wrap">
+    <button id="generate-btn" onclick="abrirModalTema()"><span>✦ Gerar Livro</span></button>
+  </div>
+</div>
+
+
+<!-- ═══ MODAL TEMA ═══ -->
+<div id="modal-tema" class="modal-overlay">
+  <div class="modal-box">
+    <h2 class="modal-title">Escolha o Tema</h2>
+    <p class="modal-subtitle">Qual voz ecoa em sua alma hoje?</p>
+    <div class="theme-options">
+      <button class="theme-btn" onclick="gerarLivro('romance')">
+        <span class="theme-icon">🌹</span>
+        <div class="theme-label"><div>Romance</div><div class="theme-desc">Amor, paixão e o coração partido</div></div>
+      </button>
+      <button class="theme-btn" onclick="gerarLivro('politico')">
+        <span class="theme-icon">⚔️</span>
+        <div class="theme-label"><div>Político</div><div class="theme-desc">Poder, resistência e a voz do povo</div></div>
+      </button>
+      <button class="theme-btn" onclick="gerarLivro('existencia')">
+        <span class="theme-icon">∞</span>
+        <div class="theme-label"><div>Existência</div><div class="theme-desc">O ser, o tempo e o vazio que nos habita</div></div>
+      </button>
+    </div>
+    <button class="modal-close" onclick="fecharModalTema()">← voltar</button>
+  </div>
+</div>
+
+
+<!-- ═══ LOADING ═══ -->
+<div id="loading-overlay">
+  <p class="loading-title">Tecendo os versos dos mestres…</p>
+  <div class="loading-dots"><span></span><span></span><span></span></div>
+</div>
+
+
+<!-- ═══ BIBLIOTECA ═══ -->
+<div id="pg-biblioteca" class="pg">
+  <div class="library-header">
+    <button class="back-btn" onclick="ir('main')">← Início</button>
+    <h2 class="library-title">Minha Biblioteca</h2>
+  </div>
+  <div class="books-grid" id="books-grid"></div>
+</div>
+
+
+<!-- ═══ SOBRE O LIVRO ═══ -->
+<div id="pg-sobre" class="pg">
+  <div class="book-page-inner">
+    <div class="book-nav-bar">
+      <button class="back-btn" onclick="ir('biblioteca')">← Biblioteca</button>
+      <button class="back-btn" onclick="ir('main')">Início</button>
+    </div>
+    <div id="sobre-conteudo"></div>
+  </div>
+</div>
+
+
+<!-- ═══ POEMA LIMPO ═══ -->
+<div id="pg-poema" class="pg pg-poema">
+  <div class="poema-topbar">
+    <div class="poema-topbar-left">
+      <span class="poema-logo">O Grito das Palavras</span>
+      <span class="poema-sep">·</span>
+      <span class="poema-titulo-topo" id="poema-titulo-topo"></span>
+    </div>
+    <div class="poema-topbar-right">
+      <button class="ptb-btn ptb-ghost" onclick="ir('sobre')">← Voltar</button>
+      <button class="ptb-btn ptb-solid" onclick="gerarPDF()">⬇ PDF</button>
+    </div>
+  </div>
+  <div class="poema-wrap" id="poema-wrap"></div>
+</div>
+
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
